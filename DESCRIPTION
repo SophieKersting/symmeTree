@@ -1,15 +1,16 @@
 Package: symmeTree
-Title: What the Package Does (One Line, Title Case)
+Title: Calculate SNI, mCI and Rogers J for rooted binary trees
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Sophie",
+           family = "Kersting",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+           email = "sophie.kersting@uni-greifswald.de")
+Description: Calculate the symmetry nodes index, the modified cherry index or 
+  the Rogers J of rooted binary trees in the phylo format. Furthermore, 
+  determine the binary weight and the minimal value of the symmetry nodes and 
+  J index.
+License: `use_mit_license()`
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

@@ -1,13 +1,14 @@
 #' Symmetry Nodes Index of a rooted binary tree
 #'
 #' \code{symNodesIndex} - This function calculates the symmetry nodes index
-#' value (i.e. the number of interior nodes that are not symmetry nodes) for
+#' value, i.e. the number of interior nodes that are not symmetry nodes, for
 #' rooted binary trees.
 #'
 #' @author Sophie Kersting
 #' @param tree Rooted binary tree of class "phylo"
 #'                  (no specific node enumeration order required)
 #' @return number of interior nodes that are not symmetry nodes (numeric)
+#' @importFrom stats na.omit
 #' @export
 #' @examples
 #' mat <- cbind(c(7,7,6,5,5,6),c(1,2,3,4,6,7))

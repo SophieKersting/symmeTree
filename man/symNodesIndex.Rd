@@ -15,7 +15,7 @@ number of interior nodes that are not symmetry nodes (numeric)
 }
 \description{
 \code{symNodesIndex} - This function calculates the symmetry nodes index
-value (i.e. the number of interior nodes that are not symmetry nodes) for
+value, i.e. the number of interior nodes that are not symmetry nodes, for
 rooted binary trees.
 }
 \examples{

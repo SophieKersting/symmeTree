@@ -4,30 +4,37 @@
 \alias{getDescMatrix}
 \alias{getAncVec}
 \alias{getNodesOfDepth}
-\title{Get descendants of nodes in matrix}
+\alias{myBucketLexicoSort}
+\title{Auxiliary functions for handling nodes in trees}
 \usage{
 getDescMatrix(tree)
 
 getAncVec(tree)
 
 getNodesOfDepth(mat, root, n)
+
+myBucketLexicoSort(workLabs)
 }
 \arguments{
 \item{tree}{Rooted binary tree of class "phylo", >= 2 leaves
 (no specific node enumeration order required)}
 
-\item{mat}{descendants matrix from \code{getDescMatrix}}
+\item{mat}{Descendants matrix from \code{getDescMatrix}}
 
 \item{root}{Number (label) of the root of the tree}
 
 \item{n}{Number of leaves of the tree}
+
+\item{workLabs}{numeric matrix (2 columns)}
 }
 \value{
-numeric matrix  (2n-1 rows, 2 columns)
+\code{desc_mat} numeric matrix  (2n-1 rows, 2 columns)
 
-numeric vector  (size 2n-1)
+\code{anc_vec} numeric vector  (size 2n-1)
 
-numeric matrix  (n rows, n columns)
+\code{nodes_of_depth} numeric matrix  (n rows, n columns)
+
+\code{ranking} numeric vector
 }
 \description{
 \code{getDescMatrix} - Determines a matrix that contains the descendants of
@@ -36,8 +43,11 @@ node i in row i.
 \code{getAncVec} - Determines a vector that contains the ancestor of
 node i in position i.
 
-\code{getAncVec} - Determines a matrix that contains the nodes of
+\code{getNodesOfDepth} - Determines a matrix that contains the nodes of
 depth i in row i.
+
+\code{myBucketLexicoSort} - Sorts the pairs of numbers lexicographically and
+returns ranking. Uses bucket sort.
 }
 \examples{
 mat <- cbind(c(7,7,6,5,5,6),c(1,2,3,4,6,7))
@@ -47,6 +57,8 @@ getDescMatrix(tree)
 getAncVec(tree)
 getNodesOfDepth(mat=getDescMatrix(tree),
 root=which(is.na(getAncVec(tree))), n=tree$Nnode+1)
+myWorkLabs <- cbind(c(0,1,2,3,1,0),c(0,2,2,4,1,0))
+myBucketLexicoSort(myWorkLabs)
 }
 \author{
 Sophie Kersting

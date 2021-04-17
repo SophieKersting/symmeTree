@@ -1,4 +1,4 @@
-#' Get descendants of nodes in matrix
+#' Auxiliary functions for handling nodes in trees
 #'
 #' \code{getDescMatrix} - Determines a matrix that contains the descendants of
 #' node i in row i.
@@ -6,7 +6,8 @@
 #' @author Sophie Kersting
 #' @param tree Rooted binary tree of class "phylo", >= 2 leaves
 #'                  (no specific node enumeration order required)
-#' @return numeric matrix  (2n-1 rows, 2 columns)
+#' @return \code{desc_mat} numeric matrix  (2n-1 rows, 2 columns)
+#' @export
 #' @rdname auxFuncs
 #' @examples
 #' mat <- cbind(c(7,7,6,5,5,6),c(1,2,3,4,6,7))
@@ -24,13 +25,14 @@ getDescMatrix <- function(tree){
     }
     return(desc_mat)
 }
-#' Get ancestors of nodes in vector
+#' Auxiliary functions for handling nodes in trees
 #'
 #' \code{getAncVec} - Determines a vector that contains the ancestor of
 #' node i in position i.
 #'
-#' @return numeric vector  (size 2n-1)
+#' @return \code{anc_vec} numeric vector  (size 2n-1)
 #' @rdname auxFuncs
+#' @export
 #' @examples
 #' getAncVec(tree)
 getAncVec <- function(tree){
@@ -40,16 +42,17 @@ getAncVec <- function(tree){
     }
     return(anc_vec)
 }
-#' Get all nodes at each depth
+#' Auxiliary functions for handling nodes in trees
 #'
-#' \code{getAncVec} - Determines a matrix that contains the nodes of
+#' \code{getNodesOfDepth} - Determines a matrix that contains the nodes of
 #' depth i in row i.
 #'
-#' @param mat descendants matrix from \code{getDescMatrix}
+#' @param mat Descendants matrix from \code{getDescMatrix}
 #' @param root Number (label) of the root of the tree
 #' @param n Number of leaves of the tree
-#' @return numeric matrix  (n rows, n columns)
+#' @return \code{nodes_of_depth} numeric matrix  (n rows, n columns)
 #' @rdname auxFuncs
+#' @export
 #' @examples
 #' getNodesOfDepth(mat=getDescMatrix(tree),
 #' root=which(is.na(getAncVec(tree))), n=tree$Nnode+1)
@@ -63,4 +66,52 @@ getNodesOfDepth <- function(mat,root,n){
         current_depth <- current_depth +1
     }
     return(list(nodesOfDepth=nodesOfDep, maxdepth=current_depth-1))
+}
+#' Auxiliary functions for handling nodes in trees
+#'
+#' \code{myBucketLexicoSort} - Sorts the pairs of numbers lexicographically and
+#' returns ranking. Uses bucket sort.
+#'
+#' @param workLabs numeric matrix (2 columns)
+#' @return \code{ranking} numeric vector
+#' @export
+#' @rdname auxFuncs
+#' @examples
+#' myWorkLabs <- cbind(c(0,1,2,3,1,0),c(0,2,2,4,1,0))
+#' myBucketLexicoSort(myWorkLabs)
+myBucketLexicoSort <- function(workLabs){
+    rows <- nrow(workLabs)
+    if(is.null(rows)){ #if single working lab
+        return(1)
+    }
+    bigBuckets_numb <- max(workLabs[,1])+1 #buckets for 0,1,2,..,max first entry
+    tinyBuckets_numb <- max(workLabs[,2])+1 #buckets for 0,1,2,..,max sec. entry
+    ranks <- rep(NA,nrow(workLabs))
+    #---------------fill big buckets according to first entry
+    bigBucket <- matrix(rep(NA,bigBuckets_numb*rows),ncol = rows)
+    bBFill <- rep(1,bigBuckets_numb)#bucket i can be filled at ith position
+    for(i in 1:rows){
+        firstEntry <- workLabs[i,1]
+        bigBucket[firstEntry+1,bBFill[firstEntry+1]] <- i
+        bBFill[firstEntry+1] <- bBFill[firstEntry+1] + 1 # next position
+    }
+    #----------now fill tiny buckets for every big one, according to sec. entry
+    current_rank <- 1 #start with rank 1 in first big bucket
+    for(buck in 1:bigBuckets_numb){ #buck=2
+        tinyBucket <- matrix(rep(NA,tinyBuckets_numb*rows),ncol = rows)
+        tBFill <- rep(1,tinyBuckets_numb)
+        for(i in na.omit(bigBucket[buck,])){
+            secEntry <- workLabs[i,2]
+            tinyBucket[secEntry+1,tBFill[secEntry+1]] <- i
+            tBFill[secEntry+1] <- tBFill[secEntry+1] + 1 # next position
+        }
+        for(tinybuck in 1:tinyBuckets_numb){ #tinybuck=2
+            currentIndices <- na.omit(tinyBucket[tinybuck,])
+            if(length(currentIndices)>0){ #if bucket not empty
+                ranks[currentIndices] <- current_rank
+                current_rank <- current_rank+1
+            }
+        }
+    }
+    return(ranks)
 }
