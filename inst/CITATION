@@ -1,0 +1,17 @@
+citHeader("To cite symmeTree in publications use:")
+
+citEntry(
+  entry    = "Article",
+  title    = "{M}easuring tree balance using symmetry nodes -- a new balance
+              index and its extremal properties",
+  author   = "Kersting, S and Fischer, M.",
+  journal  = ,
+  year     = "2021",
+  volume   = ,
+  number   = ,
+  pages    = ,
+  url      = ,
+  textVersion = paste(
+
+  )
+)
