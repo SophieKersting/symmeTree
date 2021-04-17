@@ -32,9 +32,6 @@ getDescMatrix <- function(tree){
 #' @return numeric vector  (size 2n-1)
 #' @rdname auxFuncs
 #' @examples
-#' mat <- cbind(c(7,7,6,5,5,6),c(1,2,3,4,6,7))
-#' tree <- list(edge=mat, tip.label=c("","","",""), Nnode=3)
-#' attr(tree, "class") <- "phylo"
 #' getAncVec(tree)
 getAncVec <- function(tree){
     anc_vec <- rep(NA,(2*tree$Nnode+1))
@@ -54,9 +51,6 @@ getAncVec <- function(tree){
 #' @return numeric matrix  (n rows, n columns)
 #' @rdname auxFuncs
 #' @examples
-#' mat <- cbind(c(7,7,6,5,5,6),c(1,2,3,4,6,7))
-#' tree <- list(edge=mat, tip.label=c("","","",""), Nnode=3)
-#' attr(tree, "class") <- "phylo"
 #' getNodesOfDepth(mat=getDescMatrix(tree),
 #' root=which(is.na(getAncVec(tree))), n=tree$Nnode+1)
 getNodesOfDepth <- function(mat,root,n){
