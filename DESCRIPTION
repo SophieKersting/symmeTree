@@ -10,7 +10,7 @@ Description: Calculate the symmetry nodes index, the modified cherry index or
   the Rogers J of rooted binary trees in the phylo format. Furthermore, 
   determine the binary weight and the minimal value of the symmetry nodes and 
   J index.
-License: `use_mit_license()`
+License: GPL-2
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
