@@ -1,17 +1,17 @@
 citHeader("To cite symmeTree in publications use:")
 
 citEntry(
-  entry    = "Article",
+  entry    = "Misc",
   title    = "{M}easuring tree balance using symmetry nodes -- a new balance
               index and its extremal properties",
-  author   = "Kersting, S and Fischer, M.",
-  journal  = ,
+  author   = "Sophie J. Kersting, Mareike Fischer",
   year     = "2021",
-  volume   = ,
-  number   = ,
-  pages    = ,
-  url      = ,
-  textVersion = paste(
-
-  )
+  eprint   = "2105.00719",
+  url = "https://arxiv.org/abs/2105.00719",
+  archivePrefix = "arXiv",
+  primaryClass  = "q-bio.PE",
+  textVersion   = paste("Kersting, S. J. and Fischer, M. (2021)",
+        "{M}easuring tree balance using symmetry nodes -- a new balance
+              index and its extremal properties",
+        "https://arxiv.org/abs/2105.00719")
 )
