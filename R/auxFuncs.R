@@ -4,7 +4,7 @@
 #' node i in row i.
 #'
 #' @author Sophie Kersting
-#' @param tree Rooted binary tree of class "phylo", >= 2 leaves
+#' @param tree Rooted tree of class "phylo", >= 2 leaves
 #'                  (no specific node enumeration order required)
 #' @return \code{desc_mat} numeric matrix  (2n-1 rows, 2 columns)
 #' @export
