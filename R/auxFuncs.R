@@ -12,18 +12,20 @@
 #' @examples
 #' mat <- cbind(c(7,7,6,5,5,6),c(1,2,3,4,6,7))
 #' tree <- list(edge=mat, tip.label=c("","","",""), Nnode=3)
-#' attr(tree, "class") <- "phylo"
+#' getDescMatrix(tree)
+#' mat <- cbind(c(5,5,5,5),c(1,2,3,4))
+#' tree <- list(edge=mat, tip.label=c("","","",""), Nnode=1)
 #' getDescMatrix(tree)
 getDescMatrix <- function(tree){
-    desc_mat <- matrix(rep(NA,2*(2*tree$Nnode+1)), ncol = 2)
+    n <- length(tree$tip.label)
+    desc_mat <- matrix(rep(NA,n*(tree$Nnode+n)), ncol = n)
+    currentCol <- rep(1,(tree$Nnode+n))
     for(i in 1:nrow(tree$edge)){ # transfer every row (edge) to desc_mat
-        if(is.na(desc_mat[tree$edge[i,1],1])){
-            desc_mat[tree$edge[i,1],1] <- tree$edge[i,2]
-        }else{
-            desc_mat[tree$edge[i,1],2] <- tree$edge[i,2]
-        }
+        source <- tree$edge[i,1] 
+        desc_mat[source,currentCol[source]] <- tree$edge[i,2]
+        currentCol[source] <- currentCol[source]+1
     }
-    return(desc_mat)
+  return(desc_mat)
 }
 #' Auxiliary functions for handling nodes in trees
 #'
