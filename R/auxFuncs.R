@@ -38,7 +38,8 @@ getDescMatrix <- function(tree){
 #' @examples
 #' getAncVec(tree)
 getAncVec <- function(tree){
-    anc_vec <- rep(NA,(2*tree$Nnode+1))
+    n <- length(tree$tip.label)
+    anc_vec <- rep(NA,tree$Nnode+n)
     for(i in 1:nrow(tree$edge)){ # transfer every row (edge) to anc_vec
         anc_vec[tree$edge[i,2]] <- tree$edge[i,1]
     }
