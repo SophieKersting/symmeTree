@@ -21,8 +21,8 @@ As an example run the following commands that calculate the index values for the
 To cite the symmeTree package in publications please use (Bibtex formatted citation):
 
     @misc{
-      title={Measuring tree balance using symmetry nodes -- A new balance index and its extremal properties}, 
-      author={Sophie J. Kersting and Mareike Fischer},
+      title = {Measuring tree balance using symmetry nodes -- A new balance index and its extremal properties}, 
+      author = {Sophie J. Kersting and Mareike Fischer},
       journal = {Mathematical Biosciences},
       volume = {341},
       pages = {108690},
